@@ -52,16 +52,14 @@ class Zoo:
         self.animals = set()
         self.habitats = set()
         self.visitors = list()
-        self.habitat_population = dict()
 
 
     def build_habitat(self, habitat):
-        """Adds tuples to the habitats set in the format (name, type)
+        """Adds a habitats to the zoo
 
         Method arguments:
         -----------------
-        name(string) -- The marketing name of the habitat
-        type(string) -- The type of habitat (e.g. Saltwater, Savanna, Swamp, etc.)
+        habitat(object) -- A habitat instance
         """
 
         self.habitats.add(habitat)
@@ -83,8 +81,7 @@ class Zoo:
 
         Method arguments:
         -----------------
-        type(string) -- The type of animal to add
-        name(string) -- The given name of the animal
+        animal(object) -- An animal instance
         """
 
         self.animals.add(animal)
@@ -92,11 +89,11 @@ class Zoo:
     def animal_report(self):
 
         for habitat in self.habitats:
-            print(habitat.marketing_name)
+            print("\n\nHabitat:"+habitat.marketing_name)
             print("-------------------------")
             for animal in self.animals:
                 if animal.habitat is habitat:
-                    print(animal.name + "\n")
+                    print(animal.name)
 
 
     def list_animals(self):
@@ -106,23 +103,25 @@ class Zoo:
         n/a
         """
 
-        [print(k + ' the ' + v) for k, v in self.animals.items()]
+        [print("{} the {}".format(animal.name, animal.type)) for animal in self.animals]
 
 
-if __name__ == "__main__":
-    a_zoo = Zoo("Zoolandia")
-    a_zoo.purchase_animal(tommy)
-    a_zoo.purchase_animal(chester)
-    a_zoo.purchase_animal(horton)
-    a_zoo.purchase_animal(danny)
+a_zoo = Zoo("Zoolandia")
+a_zoo.purchase_animal(tommy)
+a_zoo.purchase_animal(chester)
+a_zoo.purchase_animal(horton)
+a_zoo.purchase_animal(danny)
 
-    a_zoo.build_habitat(savannah)
-    a_zoo.build_habitat(jungle)
-    a_zoo.build_habitat(island)
+a_zoo.build_habitat(savannah)
+a_zoo.build_habitat(jungle)
+a_zoo.build_habitat(island)
 
-    a_zoo.animal_report()
+a_zoo.list_animals()
 
-    #a_zoo.list_animals.__doc__ # To view the docstring for the method
+a_zoo.animal_report()
+
+print("")
+print(a_zoo.list_animals.__doc__) # To view the docstring for the method
 
 
 
